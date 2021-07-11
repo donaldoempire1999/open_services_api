@@ -11,7 +11,10 @@ app.use(bodyParser.json())
 
 app.get('/' , (req, res) => {
 
-    res.send("Hello World!");
+    res.send({
+        title: "Bienvenue sur open-service-api" , 
+        message:"Nous sommes encore en activité!!"
+    });
 
 });
 
