@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "La partie API du projet open services. Il sera developper en node js , et on utilisera CI et CD pour la partie Devops sur Heroku.",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "test": "mocha ./test/* --exit",
     "dev": "nodemon index.js",
