@@ -12,7 +12,7 @@ router.post('/signup' , usersControllers.signup);
 router.post('/login' , usersControllers.login);
 
 //Get All Users
-router.get('/all' , auth,  usersControllers.getAllUsers);
+router.get('/all' ,  usersControllers.getAllUsers);
 
 //get User info
 router.get('/' , auth,  usersControllers.getAllAboutUser);
