@@ -1,33 +1,35 @@
-import express from 'express';
+import express, { Request ,Response } from 'express';
 
-import { usersRouter} from './routes/users'
+import { usersRouter } from './src/routes/users'
 
 import dotenv from 'dotenv';
 
 dotenv.config({path: __dirname + '/.env'})
 
-import { connect_db } from './db/connect';
+import { connect_db } from './src/db/connect';
 
 
 //Application express
 export const app = express();
 
 //Port
-const port = process.env.PORT || 3000;
+const port:number|string = process.env.PORT || 3000;
 
 app.listen(port , () => console.log(`Your are listenning on port ${port}`));
 
-
-
-app. use(function(req, res, next) {
-    res. header("Access-Control-Allow-Origin", "*");
-    res. header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use((req: Request, res:Response, next:Function) => {
+   
+    res.header("Access-Control-Allow-Origin", "*");
+   
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   
     next();
 });
 
 //Parse request body
 app.use(express.json());
 
+//Encode req body 
 app.use(express.urlencoded({extended: true}));
 
 

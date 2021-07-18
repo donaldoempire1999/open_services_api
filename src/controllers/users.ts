@@ -1,8 +1,10 @@
 import bcrypt from 'bcrypt'
+
 import jwt from "jsonwebtoken"
+
 import {Request , Response} from 'express'
+
 import User from "../db/models/user";
-import { Model } from 'mongoose';
 
 
 let login = async (req:Request , res:Response , next:Function) => {
@@ -33,10 +35,10 @@ let login = async (req:Request , res:Response , next:Function) => {
                     )
                 });
 
-    }catch (e){
-
-                    res.status(404).json({error: e})
-
+    }catch (e){ 
+        
+        res.status(404).json({error: e});
+      
     }
 
 }
@@ -60,7 +62,7 @@ let signup = async (req:Request , res:Response , next:Function ) =>  {
 
             await user.save();
 
-            res.status(200).json({message: "Successful created user!!"})
+            res.status(200).json({message: "Successful created user!!"});
 
         } catch (e){
 
@@ -76,6 +78,7 @@ let get_users = async (req:Request , res:Response , next:Function) => {
     try{
 
          let users = await User.find({});
+         
          res.status(200).json(users);
 
     }catch (e) {
