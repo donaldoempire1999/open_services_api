@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo 'ok'",
     "dev": "ts-node-dev --respawn --pretty --transpile-only index.ts",
-    "start": "ts-node index.ts"
+    "start": "ts-node --transpile-only index.ts"
   },
   "author": "donaldoempire1999",
   "license": "ISC",
