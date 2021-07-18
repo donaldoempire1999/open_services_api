@@ -1,6 +1,8 @@
-const decode_token = require('./decode_token')
+import decode_token from './decode_token'
 
-module.exports = (req , res , next) => {
+import { Request, Response } from 'express';
+
+export default (req:Request , res:Response , next: Function) => {
 
     try{
 
@@ -15,8 +17,6 @@ module.exports = (req , res , next) => {
         }
 
     }catch (e) {
-
-        console.log(e);
 
         res.status(401).json({
             error: e

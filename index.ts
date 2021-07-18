@@ -1,18 +1,22 @@
-const express = require('express');
-const usersRouter = require('./routes/users');
-require('dotenv').config({path: __dirname + '/.env'})
+import express from 'express';
+
+import { usersRouter} from './routes/users'
+
+import dotenv from 'dotenv';
+
+dotenv.config({path: __dirname + '/.env'})
+
+import { connect_db } from './db/connect';
 
 
 //Application express
-const app = express();
+export const app = express();
 
 //Port
 const port = process.env.PORT || 3000;
 
 app.listen(port , () => console.log(`Your are listenning on port ${port}`));
 
-
-const connect_db = require('./db/connect');
 
 
 app. use(function(req, res, next) {
@@ -28,7 +32,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 //Connection to mongo Atlas
-connect_db().catch(e => console.log(e))
+connect_db();
 
 
 //Handke get
@@ -50,5 +54,3 @@ app.use((req ,res ) => {
     });
 
 });
-
-module.exports = app;
