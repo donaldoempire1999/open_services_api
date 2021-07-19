@@ -45,9 +45,9 @@ Voici les differents services offerts par l'Api:
             //Dans le cas d'une personne physique 
             person: {
 
-                    first_name: { type: String, required:false , maxLength: 20 },    
-                    second_name: {type: String , required: false },
-                    birthday: {type: Date , require:true}
+                    first_name: { type: String, maxLength: 20 },    
+                    second_name: {type: String},
+                    birthday: {type: Date}
             
               },
             
@@ -72,7 +72,7 @@ Voici les differents services offerts par l'Api:
                 // Le nom de l'entreprise
                 name: {type: String , maxLength: 20}, 
 
-                creation_date: {type: Date , required:true}
+                creation_date: {type: Date}
             },
             
             
