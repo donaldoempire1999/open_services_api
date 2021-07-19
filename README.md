@@ -10,9 +10,9 @@ Voici les differents services offerts par l'Api:
    
    Ici ça concerne la gestion des utilisateurs:
    
-   -> (GET) **/users/** : Permet de lister tout les utilisateurs de la base
+   -> (GET) **/users/** : Permet de lister tout les utilisateurs de la base.
 
-   -> (GET) **/users/_id** : Permet d'obtenir toute les informations concernant un utilisateur par rapport à son id
+   -> (GET) **/users/_id** : Permet d'obtenir toute les informations concernant un utilisateur par rapport à son id.
 
    -> (POST) **/users/login** : Pour la connection, une token est renvoyé lorsque la connexion a été bien établie , params: **phone_number , mdp**
 
@@ -105,8 +105,6 @@ Voici les differents services offerts par l'Api:
             
             //Numero de téléphone
             phone_number: {type: String , required: true, unique: true}, 
-
-
 
 
  -> (PUT) **/users/_id** : Update d'un utilisateur. Même format que /users/signup , à la difference de l'ID passé en url.
