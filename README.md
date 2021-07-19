@@ -112,7 +112,7 @@ Voici les differents services offerts par l'Api:
 
  # Publications
         
-    Ce service s'occupe de la gestion des publications des offres.
+ Ce service s'occupe de la gestion des publications des offres.
 
          ->(GET) **/publications/** : Permet de lister toutes les publications de la plateforme.
 
