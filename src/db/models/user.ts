@@ -19,7 +19,7 @@ let userSchema:Schema = new Schema({
             enum: ["provider", "requester", "admin"],
             required: true ,
             default: "requester"
-        }
+        },
        
     },
     
@@ -27,25 +27,26 @@ let userSchema:Schema = new Schema({
     //Dans le cas d'une personne physique
     person: {
 
-      first_name: { type: String, required:false , maxLength: 20 },    
-      second_name: {type: String , required: false },
-      birthday: {type: Date , require:true}
+      first_name: { type: String, maxLength: 20 },    
+      second_name: {type: String, maxLength: 20},
+      birthday: {type: Date}
       
     },
     
     //L'adresse de la personne ou de la structure
     address: {
         
-        country: {type:String , require: true} ,
+        country: {type:String , required: true} ,
         
-        region: {type: String, require: true},
+        region: {type: String, required: true},
         
-        city: {type:String, require: true}, 
+        city: {type:String, required: true}, 
         
-        quarter: {type:String, require: true},
+        quarter: {type:String, required: true},
         
-        bp: {type: Number} 
-    },
+        bp: {type: Number},
+    
+    }  ,
 
 
     
@@ -54,7 +55,7 @@ let userSchema:Schema = new Schema({
         // Le nom de l'entreprise
         name: {type: String , maxLength: 20}, 
 
-        creation_date: {type: Date , required:true}
+        creation_date: {type: Date}
     },
     
     
@@ -80,7 +81,7 @@ let userSchema:Schema = new Schema({
      register_date:{ type: Date, default: Date.now() },
     
      //Mot de passe , il est unique
-     mdp: {type: String, require: true , unique: true},
+     mdp: {type: String, required: true , unique: true},
     
     //Image de profil
      image_url: {type: String} ,

@@ -12,7 +12,7 @@ let contractSchema = new Schema({
     },
 
     //les closes du contrat
-    close: {type: String , require: true},
+    close: {type: String , required: true},
 });
 
 export default model('Contract', contractSchema);

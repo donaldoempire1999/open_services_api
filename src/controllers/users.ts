@@ -11,7 +11,7 @@ let login = async (req:Request , res:Response , next:Function) => {
 
     try {
                         
-                let user = await User.findOne({email: req.body.email});
+                let user = await User.findOne({numero_tel: req.body.numero_tel});
             
                 if (!user) {
                     return res.status(404).json({error: "User not found!"});
@@ -25,8 +25,6 @@ let login = async (req:Request , res:Response , next:Function) => {
 
                 res.status(200).json({
                     userId: user._id,
-                    type_user: user.type_user,
-                    category: user.category,
                     token: jwt.sign(
                         {userId: user._id},
                         process.env.JWT_TOKEN_SECRET||"",
@@ -49,14 +47,17 @@ let signup = async (req:Request , res:Response , next:Function ) =>  {
 
             let hash_mdp = await bcrypt.hash(req.body.mdp, 10);
 
-
             const user = new User({
-                type_user: req.body.type_user,
                 category: req.body.category,
-                email: req.body.email,
+                person: req.body.person,
+                address: req.body.address,
+                entreprise: req.body.entreprise,
                 mdp: hash_mdp,
+                cv: req.body.cv,
+                image_url: req.body.image_url, 
                 phone_number: req.body.phone_number,
-                address: req.body.address
+                email: req.body.email
+                
             });
 
             await user.save();
@@ -66,7 +67,7 @@ let signup = async (req:Request , res:Response , next:Function ) =>  {
         } catch (e){
 
             //Bad request
-            res.status(400).json({error: e});
+            res.status(400).json({error: e.toString()});
 
     }
 }
