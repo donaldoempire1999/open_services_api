@@ -1,4 +1,6 @@
-# open_services_api : https://open-services-api.herokuapp.com/
+# open_services_api 
+
+   * url: https://open-services-api.herokuapp.com/
 
 La partie API du projet open services. Il sera developper en node js , et on utilisera CI et CD pour la partie Devops sur Heroku.TypeScript est utilisé , car la programmation typée est la meilleure des programmations.
 
