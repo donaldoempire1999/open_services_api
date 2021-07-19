@@ -118,13 +118,13 @@ Voici les differents services offerts par l'Api:
 
    -> (GET) **/publications/** : Permet d'obtenir toute les publications de l'utilisateur courant.
 
-   -> (GET) **/publications/id_pub** : Permet d'obtenir un detail sur une publication.
+   -> (GET) **/publications/id_pub** : Permet d'obtenir un detail sur une publication de l'utilisateur courant.
 
-   -> (POST) **/publications/** : Permet de creer une publication
+   -> (POST) **/publications/** : Permet à l'utilisateur courant de creer une publication
 
-   -> (DELETE) **/publications/i_pub**: Suppression d'une publication
+   -> (DELETE) **/publications/i_pub**: Suppression d'une publication de l'utilisateur courant
         
-   -> (PUT) **/publications/id_pub** : Mise à jour d'une publication
+   -> (PUT) **/publications/id_pub** : Mise à jour d'une publication de l'utilisateur courant
 
     Schema: 
            
