@@ -110,6 +110,11 @@ Voici les differents services offerts par l'Api:
  -> (PUT) **/users/_id** : Update d'un utilisateur. Même format que /users/signup , à la difference de l'ID passé en url.
 
 
+ # Publications
+        
+        Ce service s'occupe de la gestion des publications des services
+
+
 
          
            
