@@ -3,40 +3,37 @@ import { Schema, model } from 'mongoose';
 // Schema qui décrit la publication d'une offre par un requester
 let PublicationSchema = new Schema({
   
+    //Author de la publication
+    author: {type: Schema.Types.ObjectId , rel: 'User', required:true},
+
    //Les likes de la publication
     likes: {type: Number, default:0},
 
-    //La priorité , est ce que le servie est urgent ? priorité 1 , etc..
-    priority: {type: Number , enum: [0 , 1 , 2] }, 
-
-
-    // Il peut décider de joindre une ou plusieurs media sur la publication
+    //Il peut décider de joindre une ou plusieurs media sur la publication
     medias: [ {type_media: { type: String , enum: ["audio" , "video" , "ur"] }, url: String}],
 
-    // Les commentaires
-    comments: [{
-        user_who_comment: {type: Schema.Types.ObjectId, rel:'User'},
-        text: String , 
-        
-    }],
+    // Les commentaires sur la publication
+    comments: [{ user_who_comment: {type: Schema.Types.ObjectId, rel:'User'}, text: String }],
     
     // La description de la tâche à faire
     task_description: {
         
+        //Cette difficulté est fixé par les administrateurs
         difficulty: {type: String, enum: ["low" , "medium" , "high"]},
+
+        //La priorité , est ce que le servie est urgent ? priorité 1 , etc..
+        priority: {type: Number , enum: [0 , 1 , 2]},   
         
-        //Description de la tâche à ferme
-        description: {type: String, maxLength: 250},
+        //Description de la tâche à faire
+        description: {type: String, maxLength: 250, required:true},
 
         //Chaque contrat a une valeur estimé en  point , en fonction de la diffulté.
         //Et l'accomplissement d'un tâche ajoute des points à l'utilisateur.
         //Le soin sera laissé aux administrateur de noter.
-        points: Number,
+        points: {type: Number , default: 0},
    
-        required: true,
-
         //Salaire de base pour le job ,  proposé sur la plubication
-         base_amount: Number,
+         base_amount: {type: Number, default: 0},
 
          //periode
          period: {
@@ -62,7 +59,8 @@ let PublicationSchema = new Schema({
     //Etat du post , ouvert ou fermé
     state: {
         type: String ,
-        enum: ["closed", "open"]
+        enum: ["closed", "open"],
+        default: "open"
     }, 
 
 

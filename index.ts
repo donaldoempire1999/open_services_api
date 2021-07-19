@@ -2,6 +2,9 @@ import express, { Request ,Response } from 'express';
 
 import { usersRouter } from './src/routes/users'
 
+import { publicationsRouter } from './src/routes/publications'
+
+
 import dotenv from 'dotenv';
 
 dotenv.config({path: __dirname + '/.env'})
@@ -47,6 +50,9 @@ app.get('/' , (req, res) => {
 });
 
 app.use('/users' , usersRouter);
+
+app.use('/publications' , publicationsRouter);
+
 
 app.use((req ,res ) => {
 

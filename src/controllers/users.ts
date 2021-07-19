@@ -10,23 +10,31 @@ import User from "../db/models/user";
 let login = async (req:Request , res:Response , next:Function) => {
 
     try {
+
+                if(!req.body.phone_number || req.body.phone_number.length === 0){
+                    throw new Error("Please enter the phone number")
+                }
                         
                 let user = await User.findOne({phone_number: req.body.phone_number});
     
                 if (!user) {
-                    return res.status(404).json({error: "User with this phone number not found!"});
+                    throw new Error("User with this phone number not found!");
+                }
+
+                if(!req.body.mdp || req.body.mdp.length === 0){
+                    throw new Error ("Please enter a mdp for this number phone!");
                 }
 
                 let valid = await bcrypt.compare(req.body.mdp, user.mdp);
 
                 if (!valid) {
-                    return res.status(404).json({error: "Mdp is incorrect"});
+                    throw new Error("Mdp is incorrect");
                 }
 
                 res.status(200).json({
                     userId: user._id,
                     token: jwt.sign(
-                        {userId: user._id},
+                        {user_id: user._id},
                         process.env.JWT_TOKEN_SECRET||"",
                         {expiresIn: '24h'}
                     )
@@ -44,21 +52,31 @@ let login = async (req:Request , res:Response , next:Function) => {
 let signup = async (req:Request , res:Response , next:Function ) =>  {
 
     try{
+        
+            if(!req.body.mdp){
+            
+                return res.status(400).json({error: "Please enter a password"});
+            }
 
+            if(req.body.mdp < 10) {
+
+              return res.status(400).json({error: "Please enter a password big than 10"});
+
+            }
+
+            if (req.body.mdp > 30){
+
+                return res.status(400).json({error: "Please enter a password less than 30"});
+
+            }
+
+            const user = new User(req.body);
+
+            await user.validate();
+            
             let hash_mdp = await bcrypt.hash(req.body.mdp, 10); // Ici on hashe le mdp
-
-            const user = new User({
-                category: req.body.category,
-                person: req.body.person,
-                address: req.body.address,
-                entreprise: req.body.entreprise,
-                mdp: hash_mdp,
-                cv: req.body.cv,
-                image_url: req.body.image_url, 
-                phone_number: req.body.phone_number,
-                email: req.body.email
-                
-            });
+            
+            user.mdp = hash_mdp;
 
             await user.save();
 
@@ -67,7 +85,7 @@ let signup = async (req:Request , res:Response , next:Function ) =>  {
         } catch (e){
 
             //Bad request
-            res.status(400).json({error: e});
+            res.status(400).json(e);
 
     }
 }
@@ -100,8 +118,6 @@ let get_user = async (req:Request , res:Response , next:Function) =>  {
     
 
     } catch (e) {
-
-            console.log(e);
             
             return res.status(400).json({error: e});
 
@@ -136,17 +152,7 @@ let update_user = async (req:Request , res:Response , next:Function) => {
 
         await User.updateOne({_id: id_user} , req.body);
         
-        /*let user = await User.findById({_id: id_user});
-
-        for (let key in req.body){
-
-            user[key] = req.body[key];
-        }
-
-        console.log(user);*/
-        
-
-        res.status(200).json({message: "Successfull update user"})
+         res.status(200).json({message: "Successfull update user"})
 
     } catch (e) {
 

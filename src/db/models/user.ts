@@ -103,8 +103,6 @@ let userSchema:Schema = new Schema({
     //Les différents contrats signé dans le cas d'un provider/requester
     contracts: [{type: Schema.Types.ObjectId , ref: 'Contract'}],
 
-    //Les differrentes offres publiées , dans le cas d'un utilisateur requester , uniquement
-    publications: [{type: Schema.Types.ObjectId , ref:'Publication'}] 
 
 });
 

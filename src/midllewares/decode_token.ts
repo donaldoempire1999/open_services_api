@@ -12,7 +12,7 @@ export default function decode_token(req:Request):string|jwt.Jwt {
 
     }
 
-    const decodeToken = jwt.verify(token , process.env.JWT_TOKEN_SECRET);
+    const decodeToken = jwt.verify(token , process.env.JWT_TOKEN_SECRET  || "");
 
     return decodeToken;
 

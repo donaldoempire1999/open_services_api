@@ -8,9 +8,9 @@ export default (req:Request , res:Response , next: Function) => {
 
         const token = decode_token(req);
 
-        const userId = token.userId;
+        const user_id = token.user_id;
 
-        if(req.body.userId && req.body.userId !== userId){
+        if(req.body.user_id && req.body.user_id !== user_id){
             throw "Invalid user ID";
         }else {
             next();
@@ -19,7 +19,7 @@ export default (req:Request , res:Response , next: Function) => {
     }catch (e) {
 
         res.status(401).json({
-            error: e
+            error: e.toString()
         });
 
     }
