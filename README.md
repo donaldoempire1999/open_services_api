@@ -18,9 +18,7 @@ Voici les differents services offerts par l'Api:
 
    -> (DELETE) **/users/_id**: Suppression d'un utilisateur
    
-   -> (POST) **/users/signup** : Ici c'est pour l'inscription d'un utilisateur.
-
-        **NB: Seules les attributs required sont d'obligés d'être entré pendant l'inscription, le reste peut être effecturer après sous forme d'update**
+   -> (POST) **/users/signup** : Ici c'est pour l'inscription d'un utilisateur.NB: Seules les attributs required sont d'obligés d'être entré pendant l'inscription, le reste peut être effecturer après sous forme d'update.
 
         *Params:
 
