@@ -114,22 +114,22 @@ Voici les differents services offerts par l'Api:
         
  Ce service s'occupe de la gestion des publications des offres.
 
-         ->(GET) **/publications/** : Permet de lister toutes les publications de la plateforme.
+   -> (GET) **/publications/all** : Permet de lister toutes les publications de la plateforme.
 
-        -> (GET) **/publications/_id** : Permet d'obtenir les publications d'un utilisateur avec son id.
+   -> (GET) **/publications/** : Permet d'obtenir toute les publications de l'utilisateur courant.
 
-        -> (POST) **/publications/** : Permet de creeer une publication
+   -> (GET) **/publications/id_pub** : Permet d'obtenir un detail sur une publication.
 
-        -> (DELETE) **/publications/_id**: Suppression d'une publication (id de la publication)
+   -> (POST) **/publications/** : Permet de creer une publication
+
+   -> (DELETE) **/publications/i_pub**: Suppression d'une publication
         
-        -> (PUT) **/publications/_id** : Mise à jour d'une publication (id de la publication)
+   -> (PUT) **/publications/id_pub** : Mise à jour d'une publication
 
-        Schema: 
+    Schema: 
            
             {
     
-                    //Author de la publication
-                    author: {type: Schema.Types.ObjectId , rel: 'User'},
 
                     //Les likes de la publication
                     likes: {type: Number, default:0},
