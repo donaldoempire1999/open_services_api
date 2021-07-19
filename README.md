@@ -14,7 +14,7 @@ Voici les differents services offerts par l'Api:
 
    -> (GET) **/users/_id** : Permet d'obtenir toute les informations concernant un utilisateur par rapport à son id
 
-   -> (POST) **/users/login** : Pour la connection, une token est renvoyé lorsque la connexion a été bien établie , params: **numero_tel , mdp**
+   -> (POST) **/users/login** : Pour la connection, une token est renvoyé lorsque la connexion a été bien établie , params: **phone_number , mdp**
 
    -> (DELETE) **/users/_id**: Suppression d'un utilisateur
    

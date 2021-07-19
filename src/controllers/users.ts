@@ -11,10 +11,10 @@ let login = async (req:Request , res:Response , next:Function) => {
 
     try {
                         
-                let user = await User.findOne({numero_tel: req.body.numero_tel});
-            
+                let user = await User.findOne({phone_number: req.body.phone_number});
+    
                 if (!user) {
-                    return res.status(404).json({error: "User not found!"});
+                    return res.status(404).json({error: "User with this phone number not found!"});
                 }
 
                 let valid = await bcrypt.compare(req.body.mdp, user.mdp);
@@ -45,7 +45,7 @@ let signup = async (req:Request , res:Response , next:Function ) =>  {
 
     try{
 
-            let hash_mdp = await bcrypt.hash(req.body.mdp, 10);
+            let hash_mdp = await bcrypt.hash(req.body.mdp, 10); // Ici on hashe le mdp
 
             const user = new User({
                 category: req.body.category,
@@ -67,7 +67,7 @@ let signup = async (req:Request , res:Response , next:Function ) =>  {
         } catch (e){
 
             //Bad request
-            res.status(400).json({error: e.toString()});
+            res.status(400).json({error: e});
 
     }
 }
@@ -110,11 +110,11 @@ let get_user = async (req:Request , res:Response , next:Function) =>  {
 
 }
 
-let delete_user  = async  (req:Request , res:Response , next:Function) => {
+let delete_user  = async (req:Request , res:Response , next:Function) => {
 
     try{
 
-        await  User.findOneAndDelete({_id: req.params._id});
+        await User.findByIdAndDelete({_id: req.params._id});
 
         res.status(200).json({message: "Successful delete user!"});
 
@@ -127,4 +127,33 @@ let delete_user  = async  (req:Request , res:Response , next:Function) => {
 
 };
 
-export default {login , signup , get_user , get_users, delete_user}
+
+let update_user = async (req:Request , res:Response , next:Function) => {
+
+    try {
+
+        const id_user = req.params._id;
+
+        await User.updateOne({_id: id_user} , req.body);
+        
+        /*let user = await User.findById({_id: id_user});
+
+        for (let key in req.body){
+
+            user[key] = req.body[key];
+        }
+
+        console.log(user);*/
+        
+
+        res.status(200).json({message: "Successfull update user"})
+
+    } catch (e) {
+
+        res.status(400).json({error: e});
+        
+    }
+
+}
+
+export default {login , signup , get_user , get_users, delete_user,update_user}

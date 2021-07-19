@@ -27,8 +27,8 @@ let userSchema:Schema = new Schema({
     //Dans le cas d'une personne physique
     person: {
 
-      first_name: { type: String, maxLength: 20 },    
-      second_name: {type: String, maxLength: 20},
+      first_name: { type: String, maxLength: 155 },    
+      second_name: {type: String, maxLength: 155},
       birthday: {type: Date}
       
     },
@@ -53,7 +53,7 @@ let userSchema:Schema = new Schema({
     //Dans le cas d'une personne morale
     entreprise: {
         // Le nom de l'entreprise
-        name: {type: String , maxLength: 20}, 
+        name: {type: String , maxLength: 155}, 
 
         creation_date: {type: Date}
     },

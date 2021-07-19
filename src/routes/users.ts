@@ -17,9 +17,9 @@ router.get('/' ,  usersCtrl.get_users);
 router.get('/:_id' , usersCtrl.get_user);
 
 //Supprimer un utilisateur
-router.delete('/:_id');
+router.delete('/:_id', usersCtrl.delete_user);
 
 //Mise à jour sur les coordonnées d'un utilisateur
-router.put('/:_id');
+router.put('/:_id', usersCtrl.update_user );
 
 export {router as usersRouter};
