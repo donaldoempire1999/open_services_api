@@ -1,32 +1,18 @@
-const mongoose = require('mongoose');
+import { Schema , model } from "mongoose"
 
-let Schema = mongoose.Schema;
+let contractSchema = new Schema({
 
-let ContractSchema = new Schema({
-
-    provider: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-
-    requester: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-
-    job_description: {
-        type: String ,
-        required: true
-    },
-
-    start_date: Date,
-
-    end_date: Date,
-
+    //Publication concernée pour ce contrat
+    publication: {type: Schema.Types.ObjectId , ref:'Publication'},
+    
+    //Etat du contrat
     state: {
-        type: String ,
-        enum: ["achieve" , "on_working"]
-    }
+        type: String,
+        enum: ["achieve" , "on_working", "not_started"]
+    },
+
+    //les closes du contrat
+    close: {type: String , require: true},
 });
 
-module.exports = mongoose.model('Contract', ContractSchema);
+export default model('Contract', contractSchema);

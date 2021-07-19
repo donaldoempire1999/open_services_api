@@ -4,7 +4,7 @@ export const connect_db = async () => {
 
     try{
 
-        await connect(process.env.URI , {
+        await connect(process.env.URI || "", {
            
             useUnifiedTopology: true ,
            
