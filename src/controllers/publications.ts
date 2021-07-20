@@ -1,7 +1,6 @@
-import Publication from "../db/models/publication";
-import decode_token from '../midllewares/decode_token';
+import Publication from "../models/publication";
+import decode_token from '../helpers/decode_token';
 import {Request , Response} from "express";
-import User from "../db/models/user";
 
 
 
@@ -15,7 +14,7 @@ let create_publication = async (req:Request, res:Response , next:Function) => {
  
         let publication =  new Publication(req.body);
 
-        //On verifier le schéma
+        //On verifie si l'objet respecte bien le schéma
         await publication.validate();
     
         //Sauvegarde de la publication
@@ -117,18 +116,25 @@ let update_publication = async (req:Request, res:Response , next:Function) => {
 
     try {
 
-        await Publication.updateOne({_id: req.params.id_pub , author: decode_token(req).id_user} , req.body);
+          await Publication.updateOne({_id: req.params.id_pub , author: decode_token(req).id_user} , req.body);
         
-         res.status(200).json({message: "Successfull update user"})
+          res.status(200).json({message: "Successfull update user"})
 
      } catch (e) {
 
-        res.status(400).json({error: e});
+          res.status(400).json({error: e});
         
     }
-
-
 }
 
 
-export default {create_publication , delete_publication , update_publication, get_publications, get_publications_for_current_user , get_publication_for_current_user}
+export default {
+    
+                create_publication,
+                delete_publication, 
+                update_publication, 
+                get_publications, 
+                get_publications_for_current_user ,
+                get_publication_for_current_user
+            
+            }

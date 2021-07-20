@@ -116,13 +116,15 @@ Voici les differents services offerts par l'Api:
 
    -> (GET) **/publications/all** : Permet de lister toutes les publications de la plateforme.
 
+   <----------------------------------- Être connecté au préalable ---------------------------------------------->
+
    -> (GET) **/publications/** : Permet d'obtenir toute les publications de l'utilisateur courant.
 
    -> (GET) **/publications/id_pub** : Permet d'obtenir un detail sur une publication de l'utilisateur courant.
 
    -> (POST) **/publications/** : Permet à l'utilisateur courant de creer une publication
 
-   -> (DELETE) **/publications/i_pub**: Suppression d'une publication de l'utilisateur courant
+   -> (DELETE) **/publications/id_pub**: Suppression d'une publication de l'utilisateur courant
         
    -> (PUT) **/publications/id_pub** : Mise à jour d'une publication de l'utilisateur courant
 
@@ -193,7 +195,11 @@ Voici les differents services offerts par l'Api:
                     contract_for_post: {type: Schema.Types.ObjectId , ref: "Contract"}
 
              }
-             
+
+
+# Search 
+
+      Ici c'est le service recherche , on aura trois types de recherche, la recherche en facette  la recherche full et la recherche sur intention avec comme bonus l'autocompletion.
 
 
 

@@ -1,4 +1,4 @@
-import decode_token from './decode_token'
+import decode_token from '../helpers/decode_token'
 
 import { Request, Response } from 'express';
 
@@ -19,7 +19,7 @@ export default (req:Request , res:Response , next: Function) => {
     }catch (e) {
 
         res.status(401).json({
-            error: e.toString()
+            error: e
         });
 
     }
