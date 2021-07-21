@@ -201,7 +201,7 @@ Voici les differents services offerts par l'Api:
 
   Ici c'est le service recherche , on aura deux types de recherche, la recherche full avec facette et l'autocompletion.
 
-   -> (POST) **/search/full** :Recherche en plein texte avec regoupement.
+   -> (POST) **/search/faceted** :Recherche en plein texte avec regoupement sur plusieurs facettes.
       
         params: "query" : le mot ou groupe de mots à rechercher
 
