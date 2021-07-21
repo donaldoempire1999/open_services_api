@@ -74,6 +74,10 @@ let userSchema:Schema = new Schema({
         
        //Tout ce qui est extra dans le Cv
         extra:[{title: String , description: String}],
+
+
+        //Domaine d'activité
+        activity_domain: String
        
      },
     

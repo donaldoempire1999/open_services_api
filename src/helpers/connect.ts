@@ -27,21 +27,7 @@ let connect_db_model = async () => {
 
 //Connection à la base de donnée par mongoose pour la 
 
-let connect_db_search = async () =>  {
-
-    try {
-
-        await MongoClient.connect(process.env.URI || " ", );
-
-        console.log("Successful connect to mongo atlas  for the full text search");
-        
-
-    } catch (e) {
-
-        console.log(e);
-    }
-
-}
+let connect_db_search = async () =>  {}
 
 
 export default {connect_db_model , connect_db_search}
