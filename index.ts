@@ -33,7 +33,7 @@ app.listen(port , () => {
 app.use((req: Request, res:Response, next:Function) => {
    
     res.header("Access-Control-Allow-Origin", "*"); 
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
 
