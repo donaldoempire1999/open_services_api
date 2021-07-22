@@ -20,7 +20,7 @@ let PublicationSchema = new Schema({
 
           //Titre de la publication ou brève description du travail attendue
         /* Nouveau */
-        title: {type: String  , maxLength: 40 , required: true},
+        title: {type: String  , maxLength: 40 , required: true,  minLength: 20},
         
         //Cette difficulté est fixé par les administrateurs
         difficulty: {type: String, enum: ["low" , "medium" , "high"]},

@@ -154,7 +154,7 @@ Voici les differents services offerts par l'Api:
                         
                         //Titre de la publication ou brève description du travail attendu
                             /* Nouveau */
-                            title: {type: String  , maxLength: 40 , required: true},
+                            title: {type: String  , maxLength: 40 , minLength: 20,  required: true},
                         
 
                         //Cette difficulté est fixé par les administrateurs
