@@ -81,16 +81,20 @@ Voici les differents services offerts par l'Api:
             
                 //Sa biographie
                 bio: String,
+
+
+                //Domaine d'activité
+                 activity_domain: String,
             
                 //Un titre donné au CV
                 title: String ,
                 
                 // Ses différentes compétences
                 
-                jobs: [{title: String , description: String, }],
+                jobs: [{title: String , description: String}],
                 
             //Tout ce qui est extra dans le Cv
-                extra:[{title: String , description: String}],
+                extra:[{title: String , description: String , location: String , image: String}],
             
             },
             

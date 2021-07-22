@@ -19,7 +19,6 @@ let PublicationSchema = new Schema({
     // La description de la tâche à faire
     task_description: {
 
-
           //Titre de la publication ou brève description du domaine d'activité
         /* Nouveau */
         title: {type: String  , maxLength: 25},

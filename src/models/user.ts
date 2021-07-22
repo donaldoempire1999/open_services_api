@@ -67,17 +67,17 @@ let userSchema:Schema = new Schema({
        
         //Un titre donné au CV
         title: String ,
+
+         //Domaine d'activité
+         activity_domain: String,
         
         // Ses différentes compétences
         
         jobs: [{title: String , description: String, }],
         
-       //Tout ce qui est extra dans le Cv
-        extra:[{title: String , description: String}],
+       //Tout ce qui est extra dans le CV
+        extra:[{title: String , description: String , location: String, image:String}],
 
-
-        //Domaine d'activité
-        activity_domain: String
        
      },
     
