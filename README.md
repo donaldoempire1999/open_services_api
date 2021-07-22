@@ -83,15 +83,14 @@ Voici les differents services offerts par l'Api:
                 bio: String,
 
 
-                //Domaine d'activité
-                 activity_domain: String,
+                //Domaine d'activité (Domaine d'activité principal , exemple: Informatique decisionnelle , reparation des voitures , genie logiciel)
+                 activity_domain: {type:String, required:true , maxLength: 50}
             
                 //Un titre donné au CV
-                title: String ,
+                title: {type:String, required:true , maxLength: 50}
                 
-                // Ses différentes compétences
-                
-                jobs: [{title: String , description: String}],
+                // Ses différentes compétences        
+                jobs: [{title: String , description: String , image: String}],
                 
             //Tout ce qui est extra dans le Cv
                 extra:[{title: String , description: String , location: String , image: String}],

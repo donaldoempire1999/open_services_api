@@ -81,7 +81,7 @@ export const aggregate_for_search = (collection:string , query_string:string) =>
                 "autocomplete": {
                     "path": "title",
                     "query": "off"
-                }
+                 }
                 }
             };
 
@@ -91,11 +91,7 @@ export const aggregate_for_search = (collection:string , query_string:string) =>
    
    }
  
-   return aggregate;
-   
-    
-
-    
+   return aggregate;  
 }
 
 
