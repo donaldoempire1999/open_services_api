@@ -2,7 +2,7 @@
 
    * url: https://open-services-api.herokuapp.com/
 
-La partie API du projet open services. Il sera developper en node js , et on utilisera CI et CD pour la partie Devops sur Heroku.TypeScript est utilisé , car la programmation typée est la meilleure des programmations.
+La partie API du projet open services. Il sera developper en node js , et on utilisera CI et CD pour la partie Devops sur Heroku. TypeScript est utilisé , car la programmation typée est la meilleure des programmations.
 
 Voici les differents services offerts par l'Api:
 
@@ -206,11 +206,11 @@ Voici les differents services offerts par l'Api:
 
    -> (POST) **/search/faceted** :Recherche en plein texte avec regoupement sur plusieurs facettes.
       
-        params: "query" : le mot ou groupe de mots à rechercher
+        params: "collection": le nom de la collection sur lequel on veut faire la recherche , "query_string" : le mot ou groupe de mots à rechercher
 
    -> (POST) **/search/autocomplete** : Recherche pour autocompletion lors de la saisie
 
-        params: "query" : le mot ou groupe de mots à rechercher
+        params: "collection": le nom de la collection sur lequel on veut rechercher les mots à proposer, "query_string" : le mot ou groupe de mots à rechercher qu'on veut completer
 
 # Contrat
   
