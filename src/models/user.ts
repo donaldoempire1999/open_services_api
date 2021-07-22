@@ -66,13 +66,12 @@ let userSchema:Schema = new Schema({
          bio: String,
        
         //Un titre donné au CV
-        title: String ,
+        title: {type:String, required:true , maxLength: 50},
 
          //Domaine d'activité principal
          main_activity: {type: String, required:true , maxLength: 50},
         
-        // Ses différentes compétences
-        
+        // Ses différentes compétences       
         jobs: [{title: String , description: String, }],
         
        //Tout ce qui est extra dans le CV

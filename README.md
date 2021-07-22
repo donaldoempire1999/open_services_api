@@ -150,13 +150,18 @@ Voici les differents services offerts par l'Api:
                     // La description de la tâche à faire
                     task_description: {
                         
+                        //Titre de la publication ou brève description du travail attendu
+                            /* Nouveau */
+                            title: {type: String  , maxLength: 40 , required: true},
+                        
+
                         //Cette difficulté est fixé par les administrateurs
                         difficulty: {type: String, enum: ["low" , "medium" , "high"]},
 
                         //La priorité , est ce que le servie est urgent ? priorité 1 , etc..
-                        priority: {type: Number , enum: [0 , 1 , 2]},   
+                        priority: {type: Number , enum: [0 , 1 , 2], default: 2},   
                         
-                        //Description de la tâche à faire
+                        //Description ccomplète de la tâche à faire
                         description: {type: String, maxLength: 250},
 
                         //Chaque contrat a une valeur estimé en  point , en fonction de la diffulté.
@@ -210,7 +215,11 @@ Voici les differents services offerts par l'Api:
       
         params: "collection": le nom de la collection sur lequel on veut faire la recherche , "query_string" : le mot ou groupe de mots à rechercher
 
-   -> (POST) **/search/autocomplete** : Recherche pour autocompletion lors de la saisie
+   -> (POST) **/search/autocomplete** : Recherche pour autocompletion lors de la saisie.
+     
+       -> users:  l'attribut indexé pour l'autocompletion dans le cas des users est l'activité principale, donc c'est ces mots qui seront proposé. exemple: "Trans" ->   return "Transport en commun" et vous pouvez maintenant completer les details de la recherche avec les adresses , etc... 
+
+       -> publications: l'attribut indexé pour l'autocompletion dans ce cas sera le titre de la publication.
 
         params: "collection": le nom de la collection sur lequel on veut rechercher les mots à proposer, "query_string" : le mot ou groupe de mots à rechercher qu'on veut completer
 

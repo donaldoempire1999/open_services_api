@@ -6,7 +6,6 @@ let PublicationSchema = new Schema({
     //Author de la publication
     author: {type: Schema.Types.ObjectId , rel: 'User', required:true},
 
-
    //Les likes de la publication
     likes: {type: Number, default:0},
 
@@ -19,15 +18,15 @@ let PublicationSchema = new Schema({
     // La description de la tâche à faire
     task_description: {
 
-          //Titre de la publication ou brève description du domaine d'activité
+          //Titre de la publication ou brève description du travail attendue
         /* Nouveau */
-        title: {type: String  , maxLength: 25},
+        title: {type: String  , maxLength: 40 , required: true},
         
         //Cette difficulté est fixé par les administrateurs
         difficulty: {type: String, enum: ["low" , "medium" , "high"]},
 
         //La priorité , est ce que le servie est urgent ? priorité 1 , etc..
-        priority: {type: Number , enum: [0 , 1 , 2]},   
+        priority: {type: Number , enum: [0 , 1 , 2], default: 2},   
         
         //Description de la tâche à faire
         description: {type: String, maxLength: 250, required:true},

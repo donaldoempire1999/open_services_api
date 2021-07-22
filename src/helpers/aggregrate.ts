@@ -60,34 +60,40 @@ export const aggregate_for_search = (collection:string , query_string:string) =>
        
                 {
                     "$search": {
+                    "index": index_name,
                     "autocomplete": {
-                        "path": "users.cv.bio",
+                        "path": "cv.main_activity",
                         "query": `${query_string}`
                     }
                     }
                 };
     
        
-        aggregate[1] = {"$project":  {"mdp": 0 , "status": 0 , "register_date": 0 , 'contracts': 0 , "cv.extra": 0, "category": 0}};
+        aggregate[1] = {"$project":  {"cv.main_activity":1 , "_id":0 }};
  
    }else{
 
      // Publications index
 
+
+     // Pipeline aggregration
+
      aggregate[0] = 
      
-            {
-                "$search": {
-                "autocomplete": {
-                    "path": "title",
-                    "query": "off"
-                 }
-                }
-            };
+          {
+            "$search": {
+            
+              "index": index_name,
+              "autocomplete": {
+                "path": "task_description.title",
+                "query": `${query_string}`
+            
+              }
+            }
+        };
 
 
-
-      aggregate[1] =  {"$project":  {"comments": 0 , "followers": 0}};
+      aggregate[1] =  {"$project":  {"task_description.title": 1 , "_id": 0}};
    
    }
  
