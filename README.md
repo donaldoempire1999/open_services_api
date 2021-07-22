@@ -85,8 +85,8 @@ Voici les differents services offerts par l'Api:
                 /* Nouveau */
 
                 // Domaine d'activité principal
-                // exemple: Informatique decisionnelle ou
-                // reparation des voitures ou 
+                // exemple: Ingenieur informatique decisionnelle ou
+                // reparateur de voitures ou 
                 // developpeur web
                 main_activity: {type:String, required:true , maxLength: 50}
             
