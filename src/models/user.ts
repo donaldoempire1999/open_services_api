@@ -68,8 +68,8 @@ let userSchema:Schema = new Schema({
         //Un titre donné au CV
         title: String ,
 
-         //Domaine d'activité
-         activity_domain: String,
+         //Domaine d'activité principal
+         main_activity: {type: String, required:true , maxLength: 50},
         
         // Ses différentes compétences
         

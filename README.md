@@ -82,10 +82,11 @@ Voici les differents services offerts par l'Api:
                 //Sa biographie
                 bio: String,
 
-                // Domaine d'activité (Domaine d'activité principal 
-                // exemple: Informatique decisionnelle
-                // reparation des voitures , genie logiciel)
-                activity_domain: {type:String, required:true , maxLength: 50}
+                // Domaine d'activité principal
+                // exemple: Informatique decisionnelle ou
+                // reparation des voitures ou 
+                // developpeur web
+                main_activity: {type:String, required:true , maxLength: 50}
             
                 //Un titre donné au CV
                 title: {type:String, required:true , maxLength: 50}
