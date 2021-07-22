@@ -81,6 +81,8 @@ Voici les differents services offerts par l'Api:
             
                 //Sa biographie
                 bio: String,
+               
+                /* Nouveau */
 
                 // Domaine d'activité principal
                 // exemple: Informatique decisionnelle ou
@@ -158,6 +160,9 @@ Voici les differents services offerts par l'Api:
                         //Cette difficulté est fixé par les administrateurs
                         difficulty: {type: String, enum: ["low" , "medium" , "high"]},
 
+                        
+                        /* Update */
+                        
                         //La priorité , est ce que le servie est urgent ? priorité 1 , etc..
                         priority: {type: Number , enum: [0 , 1 , 2], default: 2},   
                         
