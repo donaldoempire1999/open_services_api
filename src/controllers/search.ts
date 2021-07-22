@@ -1,86 +1,96 @@
-import { MongoClient} from "mongodb";
+import { Request , Response } from "express";
 
-import {Request , Response} from "express";
+import { aggregate_for_autocompletion , aggregate_for_search , get_results } from "../helpers/aggregrate"
+
+import { connect_db_search } from "../helpers/connect"
 
 
 let search_faceted = async (req:Request , res:Response , next: Function) => {
 
-  let client: MongoClient = new MongoClient("mongodb+srv://donaldo2019:donaldo2019@cluster0.q01lg.mongodb.net/open-services?retryWrites=true");
-
+  let instance = await connect_db_search(); //Obtention d'une instance de connexion
+  
   try {    
 
-       await client.connect();
+        const collection = req.body.collection; // Le nom de la collection 
 
-       let results = await client.db("open-services").collection("users").aggregate([
-          {
-            '$search': {
-              'index': 'users_index',
-              'text': {
-                'query': `${req.body.query}`,
-                'path': {
-                  'wildcard': '*'
-                }
-              }
-            }
-          }
-        ]).project({mdp: 0 , status: 0}).toArray();
-               
-      res.status(200).json(results);
- 
+        const query_string = req.body.query_string; // Le nom de la  query_string
+
+        if(!collection){
+
+          return res.status(400).json({error: "Entrez le nom de la collection sur laquelle vous souhaitez faire la recherche"}); 
+        
+        }
+
+        if(collection != "users" && collection != "publications"){
+
+          return res.status(400).json({error: "Cette collection n'existe pas"});
+        
+        }
+      
+        //construction du pipeline
+        let aggr = aggregate_for_search(collection , query_string);
+
+        //Resultats
+        let results = await get_results(instance , collection , aggr);
+
+        res.status(200).json(results);
+  
     } catch (e) {
     
         res.status(400).json(e);
     
- 
   }finally{
      
-      client.close();
+      await instance.close();
   }
 }
 
 
 
-
 let autocomplete_search = async (req:Request , res:Response , next: Function) => {
 
-  let client: MongoClient = new MongoClient("mongodb+srv://donaldo2019:donaldo2019@cluster0.q01lg.mongodb.net/open-services?retryWrites=true");
+  
+  let instance = await connect_db_search(); //Instance de connexion
 
-  try {    
+  try {
+   
+   
+        const collection = req.body.collection; // Le nom de la collection 
 
-      await client.connect();
+        const query_string = req.body.query_string; // Le nom de la  query_string
 
-      let results = await client.db("open-services").collection("users").aggregate([
-        {
-          '$search': {
+        if(!collection){
 
-            "autocomplete": {
-            'index': 'users_index',
-            'text': {
-              'query': `${req.body.query}`,
-              'path': {
-                'wildcard': '*'
-              }
-            }
-          }
-          }
+          return res.status(400).json({error: "Entrez le nom de la collection sur laquelle vous souhaitez faire l'autocompletion"}); 
         }
-      ]).project({mdp: 0 , _id: 0 , status: 0}).toArray();
-              
-    res.status(200).json(results);
 
- } catch (e) {
+        if(collection != "users" && collection != "publications"){
+
+          return res.status(400).json({error: "Cette collection n'existe pas"});
+        
+        }
+
+
+          //construction du pipeline
+          let aggr =  aggregate_for_autocompletion(collection , query_string);
+
+          //Resultats
+          let results = await get_results(instance , collection , aggr);
+
+          //Fonction pour obtenir le resultat
+          res.status(200).json(results);
  
-     res.status(400).json(e);
- 
-}finally{
-  
-   client.close();
-}
-  
+    } catch (e) {
+    
+        res.status(400).json(e);
+    
+  }finally{
+     
+      await instance.close();
+  }
 
-
-
-}
+    
+  }
 
 
 export default {search_faceted , autocomplete_search}

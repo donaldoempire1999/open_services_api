@@ -11,7 +11,7 @@ import dotenv from 'dotenv';
 
 dotenv.config({path: __dirname + '/.env'})
 
-import connect from './src/helpers/connect';
+import {connect_db_model} from './src/helpers/connect';
 
 
 //Application express
@@ -25,10 +25,8 @@ app.listen(port , () => {
      console.log(`Your are listenning on port ${port}`)
 
      //Connection to mongo Atlas pour model
-     connect.connect_db_model();
+     connect_db_model();
 
-     //connect to mongo Atlas for search
-     connect.connect_db_search();
     
 });
 

@@ -4,7 +4,7 @@ import {MongoClient} from "mongodb"
 
 
 //Connection à la base de donnée par mongoose pour la manipulation des modèles
-let connect_db_model = async () => {
+export const connect_db_model = async () => {
 
     try{
 
@@ -25,9 +25,15 @@ let connect_db_model = async () => {
 }
 
 
-//Connection à la base de donnée par mongoose pour la 
+//Connection à la base de donnée pour les requêtes
 
-let connect_db_search = async () =>  {}
+export const connect_db_search = async () => {
 
-
-export default {connect_db_model , connect_db_search}
+    let client: MongoClient = new MongoClient("mongodb+srv://donaldo2019:donaldo2019@cluster0.q01lg.mongodb.net/open-services?retryWrites=true");
+  
+    await client.connect();
+    
+    return client;
+  
+  }
+  

@@ -46,7 +46,7 @@ let userSchema:Schema = new Schema({
         
         bp: {type: Number},
     
-    }  ,
+    },
 
 
     

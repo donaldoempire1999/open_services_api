@@ -6,6 +6,7 @@ let PublicationSchema = new Schema({
     //Author de la publication
     author: {type: Schema.Types.ObjectId , rel: 'User', required:true},
 
+
    //Les likes de la publication
     likes: {type: Number, default:0},
 
@@ -17,6 +18,11 @@ let PublicationSchema = new Schema({
     
     // La description de la tâche à faire
     task_description: {
+
+
+          //Titre de la publication ou brève description du domaine d'activité
+        /* Nouveau */
+        title: {type: String  , maxLength: 25},
         
         //Cette difficulté est fixé par les administrateurs
         difficulty: {type: String, enum: ["low" , "medium" , "high"]},
@@ -62,6 +68,10 @@ let PublicationSchema = new Schema({
         enum: ["closed", "open"],
         default: "open"
     }, 
+
+
+    //Publication date
+    publication_date: {type: Date , default: Date.now()},
 
 
     // Le contrat proposé par rapport à cette demande

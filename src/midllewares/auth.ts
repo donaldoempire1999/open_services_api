@@ -11,14 +11,18 @@ export default (req:Request , res:Response , next: Function) => {
         const user_id = token.user_id;
 
         if(req.body.user_id && req.body.user_id !== user_id){
+          
             throw "Invalid user ID";
+        
         }else {
+           
             next();
         }
 
     }catch (e) {
 
         res.status(401).json({
+        
             error: e
         });
 

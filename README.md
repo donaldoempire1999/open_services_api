@@ -209,6 +209,10 @@ Voici les differents services offerts par l'Api:
 
         params: "query" : le mot ou groupe de mots à rechercher
 
+# Contrat
+  
+   Ici c'est le service qui va s'occuper de la gestion des contrats.
+
 
 
 

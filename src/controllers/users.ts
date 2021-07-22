@@ -12,23 +12,27 @@ let login = async (req:Request , res:Response , next:Function) => {
     try {
 
                 if(!req.body.phone_number || req.body.phone_number.length === 0){
-                    throw new Error("Please enter the phone number")
+                   
+                    return res.status(400).json({error:"Please enter the phone number" }); 
                 }
                         
                 let user = await User.findOne({phone_number: req.body.phone_number});
     
                 if (!user) {
-                    throw new Error("User with this phone number not found!");
+                   
+                    return res.status(400).json({error:"User with this phone number not found!" }); 
                 }
 
                 if(!req.body.mdp || req.body.mdp.length === 0){
-                    throw new Error ("Please enter a mdp for this number phone!");
-                }
+
+                    return res.status(400).json({error:"Please enter a mdp for this number phone!"}); 
+               }
 
                 let valid = await bcrypt.compare(req.body.mdp, user.mdp);
 
                 if (!valid) {
-                    throw new Error("Mdp is incorrect");
+                   
+                    return res.status(400).json({error:"Mdp is incorrect"}); 
                 }
 
                 res.status(200).json({
