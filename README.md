@@ -248,10 +248,11 @@ Voici les differents services offerts par l'Api:
 schema: 
 
   
-    {    
+        {    
                     
-                //Utilisateur a propsé l''offre
+                //Utilisateur qui a proposé l''offre
                 requester: {type: Schema.Types.ObjectId , ref: 'User'},
+                
                 //Utilisateur qui a accepté l'offre
                 provider: {type: Schema.Types.ObjectId , ref: 'User'},
                 
