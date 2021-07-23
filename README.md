@@ -231,14 +231,3 @@ Voici les differents services offerts par l'Api:
 # Contrat
   
    Ici c'est le service qui va s'occuper de la gestion des contrats.
-
-
-
-
-
-         
-           
-
-        
-
-

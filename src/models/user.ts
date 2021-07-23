@@ -102,11 +102,6 @@ let userSchema:Schema = new Schema({
         default: "offline"
     }, 
 
-
-    //Les différents contrats signé dans le cas d'un provider/requester
-    contracts: [{type: Schema.Types.ObjectId , ref: 'Contract'}],
-
-
 });
 
 

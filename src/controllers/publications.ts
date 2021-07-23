@@ -10,7 +10,10 @@ let create_publication = async (req:Request, res:Response , next:Function) => {
     try {
    
         //On l'ajoute dans l'objet body request
-        req.body["author"] = decode_token(req).id_user;
+        req.body["author"] = decode_token(req).user_id;
+
+        console.log(req.body);
+        
  
         let publication =  new Publication(req.body);
 
