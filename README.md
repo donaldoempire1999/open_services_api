@@ -231,3 +231,65 @@ Voici les differents services offerts par l'Api:
 # Contrat
   
    Ici c'est le service qui va s'occuper de la gestion des contrats.
+
+
+   -> (GET) **/contracts/all** : Permet de lister touts les contrats de la plateforme. ( Pas encore disponible )
+
+   <----------------------------------- Être connecté au préalable ---------------------------------------------->
+
+   -> (GET) **/contracts/** : Permet d'obtenir touts les contrats de l'utilisateur courant.
+
+   -> (GET) **/constracts/id_contr** : Permet d'obtenir un contrat particulier de l'utilisateur courant.
+
+   -> (DELETE) **/contracts/id_contr**: Suppression d'une publication de l'utilisateur courant ( Ce qui va entrainer la suppression de la publication liée)
+        
+   -> (PUT) **/contracts/id_contr** : Mise à jour d'un contrat de l'utilisateur courant
+
+schema: 
+
+ {    
+                    
+                //Utilisateur a propsé l''offre
+                requester: {type: Schema.Types.ObjectId , ref: 'User'},
+                //Utilisateur qui a accepté l'offre
+                provider: {type: Schema.Types.ObjectId , ref: 'User'},
+                
+                //Publication concernée par ce contrat
+                publication: {type: Schema.Types.ObjectId , ref:'Publication'},
+                    
+                //Etat des accord des parties prenantes et du projet
+                agree_state: {
+            
+                    // Etat de l'accord du requester
+                    requester: {
+                
+                            state:{type:Boolean, default: false } , 
+
+                            date: {type: Date}
+                    }, 
+
+                    // Etat de l'accord du provider
+                    provider: {
+
+                            state:{type:Boolean, default: false } , 
+
+                            date: {type: Date}
+                    }, 
+
+                    //Etat du projet , pour une modification ,il faut l'accord des deux parties 
+                    task: {
+                        
+                        type: String,
+                    
+                        enum: ["achieve" , "on working", "not started"],
+                
+                        default: "not started"
+                    
+                    }
+                
+                },
+
+                //les closes du contrat
+                close: {type: String , required: true , default: "Close du contrat pas encore etablie"}
+
+      }

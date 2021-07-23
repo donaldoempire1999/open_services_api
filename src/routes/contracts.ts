@@ -2,28 +2,25 @@ import { Router } from 'express';
 
 import auth from '../midllewares/auth'
 
-import constractsCtrl from '../controllers/contract'
+import contractsCtrl from '../controllers/contract'
 
 const router  = Router(); //Routeur
 
-//Lister toutes les publications
+//Lister tout les contrats de l'application
 router.get('/all');
 
 
 /******  Il Faut être connecté pour pouvoir accomplir ces fonctionnalitées ********/
 
 
-//Lister les publications de l'utilisateur courant
-router.get('/' , auth);
+//Lister les constrats de l'utilisateur courant
+router.get('/' , auth, contractsCtrl.get_contracts);
 
 //Afficher une publication particulière
-router.get('/:id_pub' , auth);
-
-//Creer une publication
-router.post('/' , auth);
+router.get('/:id_contr' , auth ,  contractsCtrl.get_contract);
 
 //Supprimer une publication
-router.delete('/:id_pub' , auth);
+router.delete('/:id_contr' , auth , contractsCtrl.delete_contract);
 
 //Mise à jour d'une publication
 router.put('/:id_pub', auth);

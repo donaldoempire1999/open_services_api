@@ -43,7 +43,7 @@ let contractSchema = new Schema({
     },
 
     //les closes du contrat
-    close: {type: String , required: true , default: "Close du contrat pas encore etablie"},
+    close: {type: String , required: true , default: "Close du contrat pas encore etablie"}
 });
 
 export default model('Contract', contractSchema);
