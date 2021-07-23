@@ -1,4 +1,5 @@
 import Publication from "../models/publication";
+import Contract from "../models/contract"
 import decode_token from '../helpers/decode_token';
 import {Request , Response} from "express";
 
@@ -12,19 +13,41 @@ let create_publication = async (req:Request, res:Response , next:Function) => {
         //On l'ajoute dans l'objet body request
         req.body["author"] = decode_token(req).user_id;
 
-        console.log(req.body);
+
+         //Creation de l'object contrat
+         let contract = new Contract();
+         contract.requester = req.body.author;
         
  
+  
+        //Creattion de l'objet publication
         let publication =  new Publication(req.body);
+     
+     
+        //Liason de la publication avec son contrat
+        publication.contract_for_publication = contract._id;
 
-        //On verifie si l'objet respecte bien le schéma
+        
+        //Liason du contrat avec sa publication
+        contract.publication = publication._id
+
+       
+
+        //On verifie si l'objet publication respecte le schema
         await publication.validate();
+
     
-        //Sauvegarde de la publication
-        await publication.save();
+         //On verifie si l'objet contrat respecte le schema
+         await contract.validate();
+
+         //Sauvegarde de la publication
+         await publication.save();
+
+        //Sauvegarde du contrat par defaut
+        await contract.save();
 
         //OK
-        res.status(200).json({message: "Successful create publication!"});
+        res.status(200).json({message: "Successful create publication and contract for this publication!"});
 
 
     } catch (e) {
@@ -137,7 +160,7 @@ export default {
                 delete_publication, 
                 update_publication, 
                 get_publications, 
-                get_publications_for_current_user ,
+                get_publications_for_current_user, 
                 get_publication_for_current_user
-            
+                    
             }

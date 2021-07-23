@@ -10,7 +10,7 @@ let PublicationSchema = new Schema({
     likes: {type: Number, default:0},
 
     //Il peut décider de joindre une ou plusieurs media sur la publication
-    medias: [ {type_media: { type: String , enum: ["audio" , "video" , "ur"] }, url: String}],
+    medias: [ {type_media: { type: String , enum: ["audio" , "video" , "image"] }, url: String}],
 
     // Les commentaires sur la publication
     comments: [{ user_who_comment: {type: Schema.Types.ObjectId, rel:'User'}, text: String }],
@@ -20,7 +20,7 @@ let PublicationSchema = new Schema({
 
           //Titre de la publication ou brève description du travail attendue
         /* Nouveau */
-        title: {type: String  , maxLength: 50 , required: true,  minLength: 20},
+        title: {type: String  , maxLength: 50 , required: true,  minLength: 20, unique:true},
         
         //Cette difficulté est fixé par les administrateurs
         difficulty: {type: String, enum: ["low" , "medium" , "high"]},
@@ -74,7 +74,7 @@ let PublicationSchema = new Schema({
 
     // Le contrat proposé par rapport à cette demande
     //Relation one-one avec Contrat
-    contract_for_post: {type: Schema.Types.ObjectId , ref: "Contract"}
+    contract_for_publication: {type: Schema.Types.ObjectId , ref: "Contract"}
 
 
 });

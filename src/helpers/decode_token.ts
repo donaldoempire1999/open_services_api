@@ -11,7 +11,7 @@ export default function decode_token(req:Request):jwt.JwtPayload | string  {
 
     if(!token){
 
-        throw new Error("Authentification failed!, you must be connect to achieve this") ;
+        throw new Error("Authentification failed!, you must be connect to achieve this");
     }
 
     return jwt.verify(token , process.env.JWT_TOKEN_SECRET || " ");
