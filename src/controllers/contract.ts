@@ -1,6 +1,7 @@
-import Contract from "../models/publication";
+import Contract from "../models/contract";
 import decode_token from '../helpers/decode_token';
 import {Request , Response} from "express";
+import {Types} from "mongoose"
 
 
 
@@ -41,34 +42,19 @@ let get_contracts = async (req:Request, res:Response , next:Function) => {
 
     try {
         
-        let current_user_id = decode_token(req).user_id;
+        let current_user_id = Types.ObjectId(decode_token(req).user_id);
+                
+        let results = await Contract.aggregate().match({
 
-        console.log(current_user_id);
-        
-        
-        let results = await Contract.aggregate([
-          
-             {
-                 "$match": {
+            $or: [
 
-                    "$or": [
+                {requester: current_user_id},
+                
+                {provider:   current_user_id}
+            
+              ]
 
-                        {
-                            "requester": {current_user_id}            
-                        },
-                        
-                        {
-
-                            "provider":  {current_user_id}
-                        }
-                    
-                      ]          
-                }
-
-             }
-
-
-        ]);
+        });
 
         res.status(200).json(results);
       

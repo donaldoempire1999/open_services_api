@@ -1,10 +1,7 @@
 import { connect } from 'mongoose'
 
-import {MongoClient} from "mongodb"
-
-
 //Connection à la base de donnée par mongoose pour la manipulation des modèles
-export const connect_db_model = async () => {
+export const connect_db = async () => {
 
     try{
 
@@ -15,7 +12,7 @@ export const connect_db_model = async () => {
             useNewUrlParser: true
         });
 
-        console.log("Successfull connected to the mongo atlas for mdoleing queries ! ");
+        console.log("Successfull connected to the mongo atlas ! ");
 
     }catch (e){
 
@@ -23,17 +20,3 @@ export const connect_db_model = async () => {
     }
 
 }
-
-
-//Connection à la base de donnée pour les requêtes
-
-export const connect_db_search = async () => {
-
-    let client: MongoClient = new MongoClient("mongodb+srv://donaldo2019:donaldo2019@cluster0.q01lg.mongodb.net/open-services?retryWrites=true");
-  
-    await client.connect();
-    
-    return client;
-  
-  }
-  
