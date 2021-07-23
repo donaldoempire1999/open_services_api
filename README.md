@@ -247,7 +247,8 @@ Voici les differents services offerts par l'Api:
 
 schema: 
 
- {    
+  
+    {    
                     
                 //Utilisateur a propsé l''offre
                 requester: {type: Schema.Types.ObjectId , ref: 'User'},
