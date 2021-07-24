@@ -2,6 +2,7 @@ import Publication from "../models/publication";
 import Contract from "../models/contract"
 import decode_token from '../helpers/decode_token';
 import {Request , Response} from "express";
+import {Types} from "mongoose"
 
 
 
@@ -19,7 +20,6 @@ let create_publication = async (req:Request, res:Response , next:Function) => {
          contract.requester = req.body.author;
         
  
-  
         //Creattion de l'objet publication
         let publication =  new Publication(req.body);
      
@@ -27,18 +27,15 @@ let create_publication = async (req:Request, res:Response , next:Function) => {
         //Liason de la publication avec son contrat
         publication.contract_for_publication = contract._id;
 
-        
         //Liason du contrat avec sa publication
         contract.publication = publication._id
-
-       
 
         //On verifie si l'objet publication respecte le schema
         await publication.validate();
 
     
-         //On verifie si l'objet contrat respecte le schema
-         await contract.validate();
+        //On verifie si l'objet contrat respecte le schema
+        await contract.validate();
 
          //Sauvegarde de la publication
          await publication.save();
@@ -64,10 +61,13 @@ let create_publication = async (req:Request, res:Response , next:Function) => {
 let delete_publication = async (req:Request, res:Response , next:Function) => {
 
     try{
-         // On recupère la publication à supprimer
-         let publication =  await Publication.findByIdAndRemove({_id: req.params.id_pub , author: decode_token(req).user_id});
+         // On supprime la publication correspondante
+         await Publication.findByIdAndRemove({_id: req.params.id_pub , author: decode_token(req).user_id});
 
-         res.status(200).json({message: "Successful delete publication!!"});
+         // On supprime le contrat correspond
+         await Contract.findOneAndDelete({publication: Types.ObjectId(req.params.id_pub)});
+
+         res.status(200).json({message: "Successful delete publication and  respect contract!!"});
 
     }catch (e) {
 

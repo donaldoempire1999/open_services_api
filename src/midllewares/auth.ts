@@ -12,7 +12,7 @@ export default (req:Request , res:Response , next: Function) => {
 
         if(req.body.user_id && req.body.user_id !== user_id){
           
-            throw "Invalid user ID";
+            throw new Error("Invalid user ID");
         
         }else {
            
@@ -21,10 +21,7 @@ export default (req:Request , res:Response , next: Function) => {
 
     }catch (e) {
 
-        res.status(401).json({
-        
-            error: e
-        });
+        res.status(401).json({error:e.toString()});
 
     }
 

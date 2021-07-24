@@ -6,8 +6,6 @@ import Publication from "../models/publication"
 
 
 let search_faceted = async (req:Request , res:Response , next: Function) => {
-
-  //let instance = await connect_db_search(); //Obtention d'une instance de connexion
   
   try {    
 
@@ -117,7 +115,7 @@ let autocomplete_search = async (req:Request , res:Response , next: Function) =>
               query: query_string
             }
 
-          }).project({"cv.main_activity": 1 , _id: 0})
+          }).project({"cv.main_activity": 1 , _id: 0});
         
       
         }
@@ -133,19 +131,11 @@ let autocomplete_search = async (req:Request , res:Response , next: Function) =>
               query: query_string
             }
 
-          }).project({ "task_description.title": 1 , _id: 0})
+          }).project({ "task_description.title": 1 , _id: 0});
         
         
         }
 
-
-         /* //construction du pipeline
-          let aggr =  aggregate_for_autocompletion(collection , query_string);
-
-          //Resultats
-          let results = await get_results(instance , collection , aggr);*/
-
-          //Fonction pour obtenir le resultat
           res.status(200).json(results);
  
     } catch (e) {
@@ -154,6 +144,7 @@ let autocomplete_search = async (req:Request , res:Response , next: Function) =>
     
   }finally{
      
+    
     
   }
 

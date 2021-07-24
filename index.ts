@@ -31,6 +31,8 @@ app.listen(port , () => {
     
 });
 
+
+
 app.use((req: Request, res:Response, next:Function) => {
    
     res.header("Access-Control-Allow-Origin", "*"); 
@@ -54,7 +56,6 @@ app.get('/' , (req, res) => {
     });
 
 });
-
 
 //Route for users
 app.use('/users' , usersRouter);
