@@ -38,6 +38,10 @@ let search_faceted = async (req:Request , res:Response , next: Function) => {
                 query: query_string,
                 path: {
                   wildcard: "*"
+                },
+                fuzzy: {
+                  "maxEdits": 1,
+                  "maxExpansions": 100,
                 }
               }
 
@@ -62,6 +66,11 @@ let search_faceted = async (req:Request , res:Response , next: Function) => {
                 path: {
                
                   wildcard: "*"
+                },
+                
+                fuzzy: {
+                  "maxEdits": 1,
+                  "maxExpansions": 100,
                 }
               
               }

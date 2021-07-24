@@ -12,7 +12,6 @@ router.get('/all');
 
 /******  Il Faut être connecté pour pouvoir accomplir ces fonctionnalitées ********/
 
-
 //Lister les constrats de l'utilisateur courant
 router.get('/' , auth, contractsCtrl.get_contracts);
 

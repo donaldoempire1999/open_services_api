@@ -144,7 +144,7 @@ let update_publication = async (req:Request, res:Response , next:Function) => {
 
           await Publication.updateOne({_id: req.params.id_pub , author: decode_token(req).id_user} , req.body);
         
-          res.status(200).json({message: "Successfull update user"})
+          res.status(200).json({message: "Successfull update publication !"})
 
      } catch (e) {
 
