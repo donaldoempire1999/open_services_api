@@ -15,14 +15,14 @@ router.get('/all');
 //Lister les constrats de l'utilisateur courant
 router.get('/' , auth, contractsCtrl.get_contracts);
 
-//Afficher un contrat particulier
+//Afficher un contrat parti culier
 router.get('/:id_contr' , auth ,  contractsCtrl.get_contract);
 
 //Supprimer un contrat
 router.delete('/:id_contr' , auth , contractsCtrl.delete_contract);
 
 //Mise à jour d'un contrat
-router.put('/:id_contr', auth , contractsCtrl.update_contract);
+router.put('/:id_contr', auth, contractsCtrl.update_contract);
 
 
 export {router as contractsRouter};

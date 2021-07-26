@@ -47,6 +47,8 @@ let get_contract = async (req:Request, res:Response , next:Function) => {
 
 
 
+
+
 //Obtenir tout les contrats de l'utilisateur courant
 let get_contracts = async (req:Request, res:Response , next:Function) => {
 
@@ -103,4 +105,4 @@ export default {
                 delete_contract,
                 update_contract,
                 get_contracts
-            }
+            }            
