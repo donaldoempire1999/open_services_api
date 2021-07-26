@@ -136,6 +136,26 @@ let get_publication_for_current_user = async (req:Request, res:Response , next:F
 
 
 
+//Obtenir une publication particulière
+let get_publication_by_id = async (req:Request, res:Response , next:Function) => {
+
+
+    try {
+        
+         const publications =  await Publication.find({ _id: req.params.id_pub});
+     
+         res.status(200).json({publications})
+
+      } catch (e) {
+ 
+        res.status(400).json({e});
+ 
+    }
+
+}
+
+
+
 
 //Mise à jour d'une publication
 let update_publication = async (req:Request, res:Response , next:Function) => {
@@ -161,6 +181,7 @@ export default {
                 update_publication, 
                 get_publications, 
                 get_publications_for_current_user, 
-                get_publication_for_current_user
+                get_publication_for_current_user,
+                get_publication_by_id
                     
             }

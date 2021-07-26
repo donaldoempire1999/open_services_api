@@ -1,8 +1,8 @@
 import { Request , Response } from "express";
 
-import User from "../models/user"
+import User from "../models/user";
 
-import Publication from "../models/publication"
+import Publication from "../models/publication";
 
 
 let search_faceted = async (req:Request , res:Response , next: Function) => {
@@ -34,14 +34,23 @@ let search_faceted = async (req:Request , res:Response , next: Function) => {
             results = await User.aggregate().search({
 
               index: "users_index",              
+             
               text: {
+                
                 query: query_string,
+                
                 path: {
+                
                   wildcard: "*"
+                
                 },
+                
                 fuzzy: {
-                  "maxEdits": 1,
-                  "maxExpansions": 100,
+                
+                  maxEdits: 2,
+                
+                  maxExpansions: 100,
+                
                 }
               }
 
@@ -69,8 +78,10 @@ let search_faceted = async (req:Request , res:Response , next: Function) => {
                 },
                 
                 fuzzy: {
-                  "maxEdits": 1,
-                  "maxExpansions": 100,
+                  
+                  maxEdits: 2,
+                  
+                  maxExpansions: 100,
                 }
               
               }
@@ -105,7 +116,7 @@ let autocomplete_search = async (req:Request , res:Response , next: Function) =>
           return res.status(400).json({error: "Entrez le nom de la collection sur laquelle vous souhaitez faire l'autocompletion"}); 
         }
 
-        if(collection != "users" && collection != "publications"){
+        if(collection != "users" && collection != "publicmations"){
 
           return res.status(400).json({error: "Cette collection n'existe pas"});
         
