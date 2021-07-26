@@ -116,7 +116,7 @@ let autocomplete_search = async (req:Request , res:Response , next: Function) =>
           return res.status(400).json({error: "Entrez le nom de la collection sur laquelle vous souhaitez faire l'autocompletion"}); 
         }
 
-        if(collection != "users" && collection != "publicmations"){
+        if(collection != "users" && collection != "publications"){
 
           return res.status(400).json({error: "Cette collection n'existe pas"});
         
